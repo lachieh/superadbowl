@@ -1,10 +1,20 @@
 import React from 'react';
+import VisibilitySensor from 'react-visibility-sensor';
 
 import Player from './Player';
 import Meta from './Meta';
 import ThumbsUp from './ThumbsUp';
 
 class Ad extends React.Component {
+	constructor() {
+		super();
+
+		this.state = {
+			loaded: false,
+			visible: false,
+		};
+	}
+
 	handleToggleVote = () => {
 		this.props.toggleVote(this.props.index);
 	};
@@ -17,7 +27,7 @@ class Ad extends React.Component {
 			<div className="ad">
 				<div className="ad__video">
 					<div className="video">
-						<Player video={this.props.details.youtubeId} />
+						{this.state && <Player video={this.props.details.youtubeId} />}
 					</div>
 				</div>
 				<div className="ad__details">
