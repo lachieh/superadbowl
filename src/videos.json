@@ -1,0 +1,27 @@
+{
+  "example1": {
+    "youtubeId": "9y1kkG2_QpE",
+    "title": "Example Ad",
+    "client": "Shitty Client"
+  },
+  "example2": {
+    "youtubeId": "9y1kkG2_QpE",
+    "title": "Example Ad",
+    "client": "Shitty Client"
+  },
+  "example3": {
+    "youtubeId": "9y1kkG2_QpE",
+    "title": "Example Ad",
+    "client": "Shitty Client"
+  },
+  "example4": {
+    "youtubeId": "9y1kkG2_QpE",
+    "title": "Example Ad",
+    "client": "Shitty Client"
+  },
+  "example5": {
+    "youtubeId": "9y1kkG2_QpE",
+    "title": "Example Ad",
+    "client": "Shitty Client"
+  }
+}
