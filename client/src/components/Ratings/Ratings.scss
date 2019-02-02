@@ -1,0 +1,14 @@
+.Ratings {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: stretch;
+    align-items: stretch;
+
+    &__item {
+        display: block;
+        flex-grow: 1;
+        text-align: center;
+        height: 55px;
+    }
+}

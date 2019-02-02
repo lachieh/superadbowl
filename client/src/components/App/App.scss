@@ -1,0 +1,40 @@
+.App {
+    display: block;
+    padding: 1px 0px;
+    background-image: linear-gradient(to right top, #edfcaf, #aef6b9, #69ebd2, #00dced, #00c7ff);
+}
+
+.Profile {
+    display: flex;
+    background-image: linear-gradient(to bottom, rgba(16, 105, 184, 100) 0%, rgba(23, 134, 231, 100) 22%);
+
+    &__user,
+    &__button {
+        color: white;
+        flex-grow: 1;
+        padding: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        display: block;
+        text-align: center;
+    }
+
+    &__button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.9;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &--logout {
+            background-image: linear-gradient(to bottom, rgba(14, 45, 72, 100) 0%, rgba(27, 71, 109, 100) 22%);
+        }
+    }
+}
+
