@@ -2,10 +2,17 @@
     max-width: 100%;
     display: block;
 
-    &__container {
+    &__container,
+    &__placeholder {
         position: relative;
         overflow: hidden;
         padding-top: 56.25%;
+    }
+
+    &__placeholder {
+        background-image: radial-gradient(
+            ellipse at center, #CEFBFF, #ABF5F4
+        );
     }
 
     &__iframe {

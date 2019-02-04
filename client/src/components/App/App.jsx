@@ -22,7 +22,6 @@ class App extends Component {
   componentDidMount() {
     const socket = socketIOClient();
     socket.on('videoUpdated', data => {
-      console.log(data);
       this.setState({ videos: data.videos });
     });
     this.getUser();
