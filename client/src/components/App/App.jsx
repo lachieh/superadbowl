@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import socketIOClient from 'socket.io-client';
+import axios from 'axios';
+
 import Card from '../Card';
 
 import './App.scss';
@@ -8,24 +11,40 @@ class App extends Component {
     super(props)
 
     this.state = {
-      videos: [
-        {
-          key: '1',
-          title: 'Wind Never Felt Better',
-          company: 'Budweiser',
-          url: 'https://www.youtube.com/watch?v=B6VciSoR1iQ',
-        },
-        {
-          key: '2',
-          title: 'Wind Never Felt Better',
-          company: 'Budweiser',
-          url: 'https://www.youtube.com/watch?v=B6VciSoR1iQ',
-        },
-      ],
-      user: {
-        name: 'Clarence',
-      },
+      videos: [],
+      user: null,
     }
+
+    this.getUser = this.getUser.bind(this);
+    this.getVideos = this.getVideos.bind(this);
+  }
+
+  componentDidMount() {
+    const socket = socketIOClient();
+    socket.on('videoUpdated', data => {
+      console.log(data);
+      this.setState({ videos: data.videos });
+    });
+    this.getUser();
+    this.getVideos();
+  }
+
+  getUser() {
+    axios.get('/api/user')
+      .then(res => {
+        this.setState({
+          user: res.data.user,
+        })
+      })
+  }
+
+  getVideos() {
+    axios.get('/api/videos')
+      .then(res => {
+        this.setState({
+          videos: res.data.videos,
+        })
+      })
   }
 
   render() {
@@ -45,23 +64,22 @@ class App extends Component {
             {user ?
               (<div className="Profile">
                 <span className="Profile__user">{user.name}</span>
-                <button className="Profile__button Profile__button--logout">Log Out</button>
+                <a href="/api/user/logout" className="Profile__button Profile__button--logout">Log Out</a>
               </div>)
               :
               (<div className="Profile">
-                <button className="Profile__button">Log In</button>
+                <a href="/api/user/login" className="Profile__button">Log In</a>
               </div>)
             }
           </div>
         </div>
         <main className="Cards">
             {videos.map(video => {
+              const props = { ...video };
+              props.key = video.id;
+              props.loggedIn = user ? true : false;
               return (
-                <Card url={video.url}
-                  title={video.title}
-                  company={video.company}
-                  key={video.key}
-                  id={video.key} />
+                <Card {...props} />
               )
             })}
         </main>

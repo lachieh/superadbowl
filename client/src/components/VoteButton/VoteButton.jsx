@@ -5,7 +5,7 @@ import './VoteButton.scss';
 
 export default class VoteButton extends Component {
     render() {
-        const { emoji, count, active, onClick, id } = this.props;
+        const { emoji, count, active, onClick, type } = this.props;
         const { r, g, b } = this.props.color;
         const style = {
             backgroundImage: `radial-gradient(
@@ -15,7 +15,7 @@ export default class VoteButton extends Component {
         }
         return (
             <button className={`VoteButton ${active ? 'is-active' : ''}`}
-                data-id={id} onClick={onClick}>
+                data-type={type} onClick={onClick}>
                 <span className="VoteButton__indicator" style={style}></span>
                 <span className="VoteButton__emoji">{emoji}</span>
                 <span className="VoteButton__count">{count}</span>
@@ -32,6 +32,7 @@ VoteButton.propTypes = {
         g: PropTypes.number,
         b: PropTypes.number,
     }),
+    type: PropTypes.string,
     emoji: PropTypes.string,
     onClick: PropTypes.func,
 }
